@@ -9,4 +9,5 @@
 *.sqlite
 /wp-content/uploads/
 /wp-content/upgrade/
+/wp-content/themes/twentytwenty*
 /logs/
