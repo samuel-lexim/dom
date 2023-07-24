@@ -37,22 +37,25 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
+  <?php /*
   <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'dom'); ?></a>
+  */ ?>
 
   <header id="masthead" class="site-header">
     <div class="site-branding">
       <?php
-      the_custom_logo();
-      if (is_front_page() && is_home()) :
+      if (is_front_page()) {
         ?>
-        <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
-      <?php
-      else :
-        ?>
-        <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
-      <?php
-      endif;
-      $dom_description = get_bloginfo('description', 'display');
+        <span class="custom-logo-link" rel="home" aria-current="page">
+          <img src="<?= getDefaultImg('logo-white.png') ?>" class="custom-logo"
+            alt="Dom The Wine Bistro" decoding="async">
+        </span>
+      <?php } else {
+        the_custom_logo();
+      }
+
+
+        $dom_description = get_bloginfo('description', 'display');
       if ($dom_description || is_customize_preview()) :
         ?>
         <p class="site-description"><?php echo $dom_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -63,11 +66,17 @@
     <nav id="site-navigation" class="main-navigation">
       <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e('Primary Menu', 'dom'); ?></button>
       <?php
-      wp_nav_menu(
-        array(
-          'menu_id' => 'primary-menu',
-        )
-      );
+      wp_nav_menu( array('menu_id' => 'primary-menu') );
       ?>
-    </nav><!-- #site-navigation -->
+    </nav>
+
+    <?php
+    // Check if WPML is active
+    if (function_exists('icl_get_languages')) {
+      // Display the language switcher
+      do_action('wpml_add_language_selector');
+    }
+
+    ?>
+
   </header><!-- #masthead -->

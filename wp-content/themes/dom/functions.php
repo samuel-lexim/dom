@@ -145,9 +145,12 @@ add_action('widgets_init', 'dom_widgets_init');
  */
 function dom_scripts()
 {
+  // Styles
   wp_enqueue_style('dom-style', get_stylesheet_uri(), array(), _S_VERSION);
   wp_style_add_data('dom-style', 'rtl', 'replace');
 
+  // Scripts
+  wp_enqueue_script('detect-browsers', get_template_directory_uri() . '/js/detect-browsers.js', array(), _S_VERSION, true);
   wp_enqueue_script('dom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 
   if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -195,6 +198,7 @@ if (defined('JETPACK__VERSION')) {
 // Remove global-styles
 remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
+remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 
 // Disable the threshold.
 add_filter('big_image_size_threshold', '__return_false');
@@ -272,39 +276,38 @@ add_action("manage_post_posts_custom_column", "my_custom_page_columns");
 // END - Add slug column for PAGE posts
 
 
-
 /**
  * Add section in admin page
  * @position function.php
  */
-if ( function_exists( 'acf_add_options_page' ) ) {
+if (function_exists('acf_add_options_page')) {
   acf_add_options_page(
     array(
       'page_title' => 'Options Page',
       'menu_title' => 'Options Page Settings',
-      'menu_slug'  => 'options-page-settings',
+      'menu_slug' => 'options-page-settings',
       'capability' => 'edit_posts',
-      'redirect'   => true
+      'redirect' => true
     )
   );
   acf_add_options_sub_page(
     array(
-      'page_title'  => 'General Settings',
-      'menu_title'  => 'General Settings',
+      'page_title' => 'General Settings',
+      'menu_title' => 'General Settings',
       'parent_slug' => 'options-page-settings'
     )
   );
   acf_add_options_sub_page(
     array(
-      'page_title'  => 'Header Settings',
-      'menu_title'  => 'Header Settings',
+      'page_title' => 'Header Settings',
+      'menu_title' => 'Header Settings',
       'parent_slug' => 'options-page-settings'
     )
   );
   acf_add_options_sub_page(
     array(
-      'page_title'  => 'Footer Settings',
-      'menu_title'  => 'Footer Settings',
+      'page_title' => 'Footer Settings',
+      'menu_title' => 'Footer Settings',
       'parent_slug' => 'options-page-settings'
     )
   );
@@ -316,8 +319,9 @@ if ( function_exists( 'acf_add_options_page' ) ) {
  *
  * @return string
  */
-function price_format( $price, string $symbol = 'VNĐ' ): string {
-  return number_format( floatval( $price ) ) . ' ' . $symbol;
+function price_format($price, string $symbol = 'VNĐ'): string
+{
+  return number_format(floatval($price)) . ' ' . $symbol;
 }
 
 /**
@@ -326,28 +330,30 @@ function price_format( $price, string $symbol = 'VNĐ' ): string {
  *
  * @return string
  */
-function getFinalPrice( $post, string $symbol = 'VNĐ' ): string {
-  if ( ! $post ) {
+function getFinalPrice($post, string $symbol = 'VNĐ'): string
+{
+  if (!$post) {
     return '';
   }
-  $regular_price = get_field( 'regular_price', $post );
-  $sale_price    = get_field( 'sale_price', $post );
-  $finalPrice    = $sale_price && intval( $sale_price ) > 0 ? $sale_price : $regular_price;
+  $regular_price = get_field('regular_price', $post);
+  $sale_price = get_field('sale_price', $post);
+  $finalPrice = $sale_price && intval($sale_price) > 0 ? $sale_price : $regular_price;
 
-  return price_format( $finalPrice, $symbol );
+  return price_format($finalPrice, $symbol);
 }
 
 /**
  * @return string
  */
-function render_call_button(): string {
-  $text  = get_field( 'detail_call_text', 'option' );
-  $link  = get_field( 'detail_call_link', 'option' );
-  $link  = $link ?? 'javascript:void(0);';
-  $color = get_field( 'detail_call_color', 'option' );
-  $bg    = get_field( 'detail_call_bg', 'option' );
-  $html  = '';
-  if ( $text ) {
+function render_call_button(): string
+{
+  $text = get_field('detail_call_text', 'option');
+  $link = get_field('detail_call_link', 'option');
+  $link = $link ?? 'javascript:void(0);';
+  $color = get_field('detail_call_color', 'option');
+  $bg = get_field('detail_call_bg', 'option');
+  $html = '';
+  if ($text) {
     $html = '<div class="call_btn btn"><a href="' . $link .
       '" style="background:' . $bg . '; color:' . $color . ';"><div class="call_btn_inner">' . $text . '</div></a></div>';
   }
@@ -357,15 +363,17 @@ function render_call_button(): string {
 
 
 // Remove prefix in archive title
-add_action( 'get_the_archive_title_prefix', 'get_the_archive_title_prefix_action' );
-function get_the_archive_title_prefix_action( $prefix ): string {
+add_action('get_the_archive_title_prefix', 'get_the_archive_title_prefix_action');
+function get_the_archive_title_prefix_action($prefix): string
+{
   return '';
 }
 
 /**
  * @return string
  */
-function getNoImageSrc(): string {
+function getNoImageSrc(): string
+{
   return get_template_directory_uri() . '/images/placeholder.jpg';
 }
 
@@ -374,25 +382,27 @@ function getNoImageSrc(): string {
  *
  * @return string
  */
-function getDefaultImg( string $defaultImg = 'default-hero.jpg'): string {
-  return get_template_directory_uri() . '/images/'. $defaultImg;
+function getDefaultImg(string $defaultImg = 'default-hero.jpg'): string
+{
+  return get_template_directory_uri() . '/images/' . $defaultImg;
 }
 
 /**
  * @param false $post
  * @param false $hasDateLabel
  */
-function get_thumbnail_with_date_label( $post = false, bool $hasDateLabel = false ) {
-  if ( ! $post ) {
+function get_thumbnail_with_date_label($post = false, bool $hasDateLabel = false)
+{
+  if (!$post) {
     return;
   }
   ?>
 
   <div class="post-thumbnail">
-    <?php echo get_the_post_thumbnail( $post ); ?>
-    <?php if ( $hasDateLabel ) {
-      $publishedDate = '<span class="_date">' . get_the_date( 'd', $post ) .
-        '</span><span class="_month">TH ' . get_the_date( 'm', $post ) . "</span>";
+    <?php echo get_the_post_thumbnail($post); ?>
+    <?php if ($hasDateLabel) {
+      $publishedDate = '<span class="_date">' . get_the_date('d', $post) .
+        '</span><span class="_month">TH ' . get_the_date('m', $post) . "</span>";
       ?>
       <div class="_publishedDate s16 fw700"><?= $publishedDate ?></div>
     <?php } ?>
