@@ -229,9 +229,27 @@
 
 // Tablet, Ipad
 @media only screen and (min-width: 768px) {
+  #primary-menu > li:nth-child(2) {
+    display: none;
+  }
+
   .site-branding {
     .custom-logo-link {
       max-width: 150px;
+    }
+  }
+
+  .rightHeader {
+    .default_btn {
+      margin-left: 24px;
+    }
+
+    .wpml-ls {
+      margin-left: 14px;
+    }
+
+    .nav-button-wrap {
+      margin-left: 20px;
     }
   }
 }
@@ -246,8 +264,65 @@
     display: flex
   }
 
-  .closeMenu {
+  .nav-button-wrap, .closeMenu {
     display: none;
+  }
+
+  .main-navigation {
+    .closeMenu + div {
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      position: relative;
+      text-decoration: none;
+      color: @greenDeepTeal;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+
+      > li {
+        line-height: 1.2;
+        padding: 25px 0;
+        margin: 0 25px;
+        white-space: nowrap;
+        transition: text-shadow 0.2s ease;
+
+        a:after {
+          content: '';
+          width: 5px;
+          height: 5px;
+          background: transparent;
+          position: absolute;
+          bottom: 5px;
+          right: -6px;
+        }
+
+        a:hover,
+        &.current-menu-item a {
+          text-shadow: 0 0 1px #000;
+
+          &:after {
+            background: @yellowGolden;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+
+  .main-navigation ul > li {
+    margin: 0 30px;
   }
 }
 
