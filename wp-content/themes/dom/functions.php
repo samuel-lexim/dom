@@ -147,11 +147,16 @@ function dom_scripts()
 {
   // Styles
   wp_enqueue_style('dom-style', get_stylesheet_uri(), array(), _S_VERSION);
-  wp_style_add_data('dom-style', 'rtl', 'replace');
+  //  wp_style_add_data('dom-style', 'rtl', 'replace');
+  wp_enqueue_style('dom-slick-css', get_template_directory_uri() . '/css/slick.css', array(), _S_VERSION);
 
   // Scripts
   wp_enqueue_script('detect-browsers', get_template_directory_uri() . '/js/detect-browsers.js', array(), _S_VERSION, true);
   wp_enqueue_script('dom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+
+  wp_enqueue_script('dom-jquery', get_template_directory_uri() . '/js/jquery-3.7.0.slim.min.js', array(), _S_VERSION, true);
+  wp_enqueue_script('dom-slick-js', get_template_directory_uri() . '/js/slick.1.8.1.min.js', array(), _S_VERSION, true);
+  wp_enqueue_script('dom-script', get_template_directory_uri() . '/js/script.js', array(), _S_VERSION, true);
 
   if (is_singular() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
@@ -343,24 +348,32 @@ function getFinalPrice($post, string $symbol = 'VNĐ'): string
 }
 
 /**
+ * @param string $text
+ * @param string $link
+ * @param string $class
  * @return string
  */
-function render_call_button(): string
+function render_button(string $text = '', string $link = 'javascript:void(0)', string $class = ''): string
 {
-  $text = get_field('detail_call_text', 'option');
-  $link = get_field('detail_call_link', 'option');
-  $link = $link ?? 'javascript:void(0);';
-  $color = get_field('detail_call_color', 'option');
-  $bg = get_field('detail_call_bg', 'option');
   $html = '';
   if ($text) {
-    $html = '<div class="call_btn btn"><a href="' . $link .
-      '" style="background:' . $bg . '; color:' . $color . ';"><div class="call_btn_inner">' . $text . '</div></a></div>';
+    $html = '<div class="default_btn '. $class .'">';
+    $html .= '<a href="' . $link . '">';
+    $html .= '<span class="_btnSpan">' . $text . '</span>';
+    $html .= '</a></div>';
   }
 
   return $html;
 }
 
+/**
+ * @return string
+ */
+function getPreLink(): string
+{
+  $current_language = wpml_get_current_language();
+  return $current_language === 'vi' ? '/vi/' : '/';
+}
 
 // Remove prefix in archive title
 add_action('get_the_archive_title_prefix', 'get_the_archive_title_prefix_action');

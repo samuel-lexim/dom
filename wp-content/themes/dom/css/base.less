@@ -3,5 +3,230 @@
 html {
   font-family: 'Nunito Sans', san-serif;
   color: @greenDeepTeal;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.444;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*, ::after, ::before {
+  box-sizing: inherit
+}
+
+a {
+  color: @greenDeepTeal;
+}
+
+a:focus {
+  outline: dotted thin
+}
+
+// Font size
+h1, h2, h3, h4, h5, h6 {
+  clear: both
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0
+}
+
+small {
+  font-size: 80%
+}
+
+big {
+  font-size: 125%
+}
+
+b, strong {
+  font-weight: bolder
+}
+
+.fw-100 {
+  font-weight: 100;
+}
+
+.fw-200 {
+  font-weight: 200;
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-900 {
+  font-weight: 900;
+}
+
+h4, p {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.444;
+}
+
+h3, .h3 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+h2, .h2 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+h1, .h1 {
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.4375;
+}
+
+.s16 {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.375;
+  letter-spacing: 5em;
+}
+
+.s18 {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.444;
+}
+
+.s20 {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.s20_24 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.s24_28 {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.s32_40 {
+  font-size: 32px;
+  line-height: 1.4375;
+}
+
+@media only screen and (min-width: 768px) {
+  h3, .h3 {
+    font-size: 24px;
+    line-height: 1.36;
+  }
+
+  h2, .h2 {
+    font-size: 28px;
+    line-height: 1.36;
+  }
+
+  h1, .h1 {
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  .s20_24 {
+    font-size: 24px;
+    line-height: 1.36;
+  }
+
+  .s24_28 {
+    font-size: 28px;
+    line-height: 1.36;
+  }
+
+  .s32_40 {
+    font-size: 40px;
+    line-height: 1.25;
+  }
+}
+
+// Button
+.default_btn {
+  display: inline-flex;
+  justify-items: center;
+  align-items: center;
+  color: #fff;
+  background: @greenDeepTeal;
+  min-width: 70px;
+  border-radius: 20px;
+  line-height: 30px;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0;
+    font-weight: 700;
+    padding: 0 20px;
+  }
+
+  &._yellow {
+    background: @yellowGolden;
+    color: @greenDeepTeal;
+
+    a {
+    }
+  }
+}
+
+// Layout
+.w1328 {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .w1312 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  .w1328 {
+    max-width: 1328px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

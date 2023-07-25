@@ -1,0 +1,253 @@
+@import "variables";
+
+// Logo
+.site-branding {
+  .custom-logo-link {
+    display: inline-block;
+    max-width: 100px;
+  }
+}
+
+// Menu
+.main-navigation {
+  ._footer {
+    text-align: center;
+    color: #fff;
+
+    p {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+  }
+}
+
+.main-navigation.toggled ul,
+.menu-toggle {
+  display: block
+}
+
+// Language Switcher
+.wpml-ls {
+  font-size: 14px;
+  color: @greenDeepTeal;
+  line-height: 1;
+  font-weight: 700;
+  padding: 0;
+
+  a {
+    color: inherit;
+  }
+
+  li {
+    &.wpml-ls-current-language {
+      color: @yellowGolden;
+    }
+  }
+}
+
+.wpml-ls-legacy-list-horizontal {
+  display: inline-flex;
+  white-space: nowrap;
+
+  a {
+    padding: 0 10px;
+  }
+
+  li:not(.wpml-ls-last-item) {
+    border-right: 2px solid @greenDeepTeal;
+  }
+}
+
+// # Language Switcher
+
+// Menu button
+.nav-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: right;
+  padding: 5px 0;
+
+  span {
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background: @greenDeepTeal;
+    top: 24px;
+    right: 0;
+
+    &._small {
+      width: 27px;
+      top: 11px;
+    }
+  }
+}
+
+.nav-button-wrap {
+  margin-left: 10px;
+}
+
+
+// Header
+.site-header {
+  margin: 0 auto;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+
+  .site-branding {
+    flex: 0 0 auto;
+  }
+}
+
+// Right header
+.rightHeader {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding-bottom: 0;
+  margin-top: 8px;
+
+  .default_btn {
+    margin-left: 20px;
+  }
+
+  .nav-button-wrap {
+    margin-left: 10px;
+  }
+
+  .wpml-ls {
+    margin-left: 10px;
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 1199px) {
+  #CloseMenuButton {
+    cursor: pointer;
+  }
+
+  .rightHeader {
+    .default_btn.booking {
+      margin-left: 0;
+    }
+  }
+
+  .main-navigation {
+    .closeMenu {
+      padding: 24px;
+      text-align: right;
+
+      & + div {
+        flex: auto;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+
+      > li {
+        line-height: 1.2;
+        padding: 20px 0;
+
+        &.current-menu-item {
+          a {
+            color: @yellowGolden;
+          }
+        }
+      }
+    }
+  }
+
+  .site-header {
+
+    .main-navigation {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100vh;
+      background-color: @greenEveningSea;
+      background-image: url("/wp-content/themes/dom/images/bg.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
+      overflow-y: auto;
+      z-index: 200;
+    }
+
+    &.open {
+      .main-navigation {
+        display: flex;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .rightHeader {
+    .default_btn.menu {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .site-branding .custom-logo-link {
+    max-width: 70px;
+  }
+
+  .rightHeader .wpml-ls,
+  .rightHeader .nav-button-wrap {
+    margin-left: 5px;
+  }
+}
+
+// Tablet, Ipad
+@media only screen and (min-width: 768px) {
+  .site-branding {
+    .custom-logo-link {
+      max-width: 150px;
+    }
+  }
+}
+
+// Desktop
+@media screen and (min-width: 1200px) {
+  .menu-toggle {
+    display: none
+  }
+
+  .main-navigation ul {
+    display: flex
+  }
+
+  .closeMenu {
+    display: none;
+  }
+}
+

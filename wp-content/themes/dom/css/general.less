@@ -1,70 +1,27 @@
 @import "variables";
 
-html, legend {
-  box-sizing: border-box
-}
-
 hr {
   box-sizing: content-box;
   border: 0;
   height: 1px
 }
 
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%
-}
-
 abbr, acronym {
-  border-bottom: 1px dotted #666;
   cursor: help
 }
 
-ins, mark {
-}
-
 li > ol, li > ul {
-  margin-left: 1.5em;
   margin-bottom: 0;
-  margin-right: 1.5em
 }
 
-input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=range], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], textarea {
-}
-
-.main-navigation ul {
-  padding-left: 0
-}
-
-.main-navigation ul ul {
-  left: -999em;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, .2);
-  float: right;
-  position: absolute;
-  top: 100%;
-  right: -999em;
-  z-index: 99999
-}
-
-.main-navigation ul ul ul {
-  left: -999em;
-  right: -999em;
-  top: 0
-}
-
-.main-navigation ul ul li.focus > ul, .main-navigation ul ul li:hover > ul {
-  left: auto;
-  display: block;
-  right: auto
-}
-
-.main-navigation ul li.focus > ul, .main-navigation ul li:hover > ul {
-  left: auto;
-  right: auto
-}
-
-code, kbd, pre, samp {
-  font-size: 1em
+input[type=color], input[type=date],
+input[type=datetime-local], input[type=datetime],
+input[type=email], input[type=month],
+input[type=number], input[type=password],
+input[type=range], input[type=search],
+input[type=tel], input[type=text],
+input[type=time], input[type=url],
+input[type=week], textarea {
 }
 
 button, hr, input {
@@ -75,19 +32,11 @@ progress, sub, sup {
   vertical-align: baseline
 }
 
-.wp-caption, hr, p {
-  margin-bottom: 1.5em
-}
-
 pre, textarea {
   overflow: auto
 }
 
-.page, .post, .site-main .comment-navigation, .site-main .post-navigation, .site-main .posts-navigation, .widget, address, table {
-  margin: 0 0 1.5em
-}
-
-.main-navigation li, sub, sup {
+sub, sup {
   position: relative
 }
 
@@ -95,16 +44,9 @@ pre, textarea {
   max-width: 100%
 }
 
-body {
-  margin: 0;
-  background: #fff
-}
-
-.bypostauthor, .infinity-end.neverending .site-footer, .main-navigation a, .main-navigation.toggled ul, .menu-toggle, .sticky, details, main {
+.bypostauthor, .infinity-end.neverending .site-footer,
+ .sticky, details, main {
   display: block
-}
-
-a {
 }
 
 abbr[title] {
@@ -112,34 +54,14 @@ abbr[title] {
   text-decoration: underline dotted
 }
 
-.main-navigation a, ins, mark {
+ins, mark {
   text-decoration: none
 }
 
-b, strong {
-  font-weight: bolder
-}
-
 code, kbd, samp {
-  font-family: monospace, monospace
+  font-family: monospace, courier
 }
 
-small {
-  font-size: 80%
-}
-
-sub, sup {
-  font-size: 75%;
-  line-height: 0
-}
-
-sub {
-  bottom: -.25em
-}
-
-sup {
-  top: -.5em
-}
 
 img {
   border-style: none;
@@ -169,7 +91,7 @@ button, select {
 }
 
 fieldset {
-  padding: .35em .75em .625em
+  padding: 0
 }
 
 legend {
@@ -206,47 +128,21 @@ table, textarea {
   font: inherit
 }
 
-summary {
-  display: list-item
-}
-
 .infinite-scroll .posts-navigation, .infinite-scroll.neverending .site-footer, .updated:not(.published), [hidden], template {
   display: none
-}
-
-*, ::after, ::before {
-  box-sizing: inherit
-}
-
-body, button, input, optgroup, select, textarea {
-}
-
-h1, h2, h3, h4, h5, h6 {
-  clear: both
 }
 
 cite, dfn, em, i {
   font-style: italic
 }
 
-blockquote {
-  margin: 0 1.5em
-}
-
 pre {
   background: #eee;
   font-family: "Courier 10 Pitch", courier, monospace;
-  line-height: 1.6;
-  margin-bottom: 1.6em;
-  padding: 1.6em
 }
 
 code, kbd, tt, var {
-  font-family: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace
-}
-
-big {
-  font-size: 125%
+  font-family: monaco, consolas, monospace
 }
 
 ol, ul {
@@ -273,10 +169,6 @@ figure {
   margin: 1em 0
 }
 
-a:focus {
-  outline: dotted thin
-}
-
 #primary[tabindex="-1"]:focus, a:active, a:hover {
   outline: 0
 }
@@ -291,44 +183,37 @@ button, input[type=button], input[type=reset], input[type=submit] {
 button:hover, input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover {
 }
 
-button:active, button:focus, input[type=button]:active, input[type=button]:focus, input[type=reset]:active, input[type=reset]:focus, input[type=submit]:active, input[type=submit]:focus {
+button:active, button:focus,
+input[type=button]:active,
+input[type=button]:focus,
+input[type=reset]:active,
+input[type=reset]:focus,
+input[type=submit]:active,
+input[type=submit]:focus {
 }
 
-input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=range], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], textarea {
+input[type=color], input[type=date],
+input[type=datetime-local],
+input[type=datetime], input[type=email],
+input[type=month], input[type=number],
+input[type=password], input[type=range],
+input[type=search], input[type=tel],
+input[type=text], input[type=time],
+input[type=url], input[type=week], textarea {
   border-radius: 3px;
   padding: 3px
 }
 
-input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, input[type=datetime]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, input[type=range]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, textarea:focus {
-}
-
-select {
-}
-
-.main-navigation {
-  display: block;
-  width: 100%
-}
-
-.main-navigation ul {
-  display: none;
-  list-style: none;
-  margin: 0;
-  padding-right: 0
-}
-
-.main-navigation ul ul a {
-  width: 200px
-}
-
-@media screen and (min-width: 37.5em) {
-  .menu-toggle {
-    display: none
-  }
-
-  .main-navigation ul {
-    display: flex
-  }
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=datetime]:focus, input[type=email]:focus,
+input[type=month]:focus, input[type=number]:focus,
+input[type=password]:focus, input[type=range]:focus,
+input[type=search]:focus, input[type=tel]:focus,
+input[type=text]:focus, input[type=time]:focus,
+input[type=url]:focus, input[type=week]:focus,
+textarea:focus {
 }
 
 .comment-navigation .nav-links, .post-navigation .nav-links, .posts-navigation .nav-links {
@@ -345,7 +230,7 @@ select {
 }
 
 .entry-content, .entry-summary, .page-content {
-  margin: 1.5em 0 0
+  margin: 0
 }
 
 .page-links {
@@ -364,18 +249,10 @@ select {
   padding: 0
 }
 
-.custom-logo-link {
-  display: inline-block
-}
-
 .wp-caption img[class*=wp-image-] {
   display: block;
   margin-right: auto;
   margin-left: auto
-}
-
-.wp-caption .wp-caption-text {
-  margin: .8075em 0
 }
 
 .wp-caption-text {
