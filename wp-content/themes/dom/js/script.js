@@ -72,7 +72,8 @@ $(document).ready(function () {
     infinite: true,
     dots: false,
     arrows: true,
-    mobileFirst: true
+    mobileFirst: true,
+    adaptiveHeight: true
   });
 
   // Menu Page
