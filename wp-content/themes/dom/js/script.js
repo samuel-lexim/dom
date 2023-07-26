@@ -32,11 +32,10 @@ function svgInit() {
 svgInit(); // Convert img to svg
 
 
-
 $(document).ready(function () {
   // Start - Header
   function toggleMenu() {
-    let header =  $('.site-header');
+    let header = $('.site-header');
     if (header.hasClass('open')) {
       header.removeClass('open');
     } else {
@@ -59,5 +58,16 @@ $(document).ready(function () {
     }
   });
   // End - Header
+
+
+  // Slider
+
+
+  $('.introductionSlider').slick({
+    infinite: true,
+    dots: false,
+    arrows: true,
+    mobileFirst: true
+  });
 
 });

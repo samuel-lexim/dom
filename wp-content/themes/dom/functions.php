@@ -351,15 +351,25 @@ function getFinalPrice($post, string $symbol = 'VNĐ'): string
  * @param string $text
  * @param string $link
  * @param string $class
+ * @param bool $showArrow
  * @return string
  */
-function render_button(string $text = '', string $link = 'javascript:void(0)', string $class = ''): string
+function render_button(
+  string $text = '',
+  string $link = 'javascript:void(0)',
+  string $class = '',
+  bool $showArrow = false
+): string
 {
   $html = '';
   if ($text) {
     $html = '<div class="default_btn '. $class .'">';
     $html .= '<a href="' . $link . '">';
     $html .= '<span class="_btnSpan">' . $text . '</span>';
+
+    if ($showArrow) {
+      $html .= '<svg width="32" height="13" viewBox="0 0 32 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.6318 11.5263L31.0003 6.26315L25.6318 0.99999" stroke="#2F5A50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 6.26315L29.2105 6.26316" stroke="#2F5A50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
     $html .= '</a></div>';
   }
 

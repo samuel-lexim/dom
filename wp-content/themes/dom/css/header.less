@@ -93,7 +93,6 @@
   margin-left: 10px;
 }
 
-
 // Header
 .site-header {
   margin: 0 auto;
@@ -125,6 +124,27 @@
 
   .wpml-ls {
     margin-left: 10px;
+  }
+}
+
+// Transparent header
+body.page-home {
+  .site-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    .wpml-ls {
+      color: #fff;
+
+      &.wpml-ls-legacy-list-horizontal li:not(.wpml-ls-last-item) {
+        border-color: #fff;
+      }
+    }
+
+    .nav-icon span {
+      background-color: #fff;
+    }
   }
 }
 
@@ -269,6 +289,10 @@
   }
 
   .main-navigation {
+    ._footer {
+      display: none;
+    }
+
     .closeMenu + div {
       display: flex;
       justify-content: center;
@@ -315,6 +339,17 @@
           }
         }
       }
+    }
+  }
+
+  body.page-home {
+    .main-navigation a {
+      color: #fff;
+    }
+
+    .main-navigation ul > li a:hover,
+    .main-navigation ul > li.current-menu-item a {
+      text-shadow: 0 0 1px #fff;
     }
   }
 }

@@ -1,0 +1,50 @@
+.slick-slider {
+  padding-bottom: 60px;
+}
+
+.slick-arrow {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  background-color: transparent;
+
+  &.slick-prev {
+    margin-left: -60px;
+    transform: rotate(180deg);
+    transform-origin: center;
+    margin-bottom: -2px;
+
+    &:before {
+      background-image: url("/wp-content/themes/dom/images/arrow-next-yellow.svg");
+    }
+  }
+
+  &.slick-next {
+    margin-left: 18px;
+
+    &:before {
+      background-image: url("/wp-content/themes/dom/images/arrow-next-yellow.svg");
+    }
+  }
+}
+
+.slick-prev, .slick-next {
+  &:before {
+    content: '';
+    width: 42px;
+    height: 42px;
+    display: block;
+    font-size: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+  }
+}
+

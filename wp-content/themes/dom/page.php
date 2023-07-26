@@ -15,24 +15,29 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+  <div id="main" class="site-main page-main page-template" role="main">
 
 		<?php
-		while ( have_posts() ) :
-			the_post();
+		// Start the loop.
+		while (have_posts()) : the_post();
 
-			get_template_part( 'template-parts/content', 'page' );
+			$page_sections = get_field('page_sections');
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+			if ($page_sections && is_array($page_sections)) {
+				foreach ($page_sections as $section) {
+					$layout = $section['acf_fc_layout'];
 
-		endwhile; // End of the loop.
-		?>
+					get_template_part('acf-layout/section', $layout, $section);
+					?>
+				<?php } ?>
+			<?php } ?>
 
-	</main><!-- #main -->
+		<?php
+		endwhile;
+		// End of the loop.
+    ?>
+
+	</div><!-- #main -->
 
 <?php
-get_sidebar();
 get_footer();

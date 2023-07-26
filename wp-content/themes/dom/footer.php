@@ -14,21 +14,12 @@ $footer_copyright = get_field( 'copyright', 'option' );
 ?>
 
 	<footer id="colophon" class="site-footer">
-
-    <?php
-
-    // Check if WPML is active
-    if (function_exists('icl_get_languages')) {
-      // Display the language switcher
-      do_action('wpml_add_language_selector');
-    }
-    ?>
-
-		<div class="site-info">
-			<p><?= $footer_copyright ?></p>
-		</div><!-- .site-info -->
+    <div class="footer_inner w1328">
+      <div class="site-info">
+        <p class="fw-700 s14"><?= $footer_copyright ?></p>
+      </div>
+    </div>
 	</footer><!-- #colophon -->
-
 
 </div><!-- #page -->
 
