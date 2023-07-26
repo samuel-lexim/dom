@@ -1,0 +1,118 @@
+@import "variables";
+
+.menu_section {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-color: @greenEveningSea;
+  padding-top: 180px;
+  padding-bottom: 105px;
+
+  ._ipad, ._desktop {
+    display: none;
+  }
+}
+
+.menu_section_inner {
+  overflow: hidden;
+}
+
+.tabControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  ._tab {
+    position: relative;
+    margin: 0 35px;
+    cursor: pointer;
+
+    &.activated {
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 13px;
+        left: 0;
+        bottom: -12px;
+        background-image: url("/wp-content/themes/dom/images/yellow-line-menu.svg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+}
+
+.tabContent {
+  ._content {
+    position: fixed;
+    left: -200vw;
+    z-index: 0;
+
+    &.activated {
+      position: relative;
+      left: 0;
+      z-index: 10;
+    }
+
+    img {
+      max-width: 100vw;
+      width: inherit;
+      height: auto;
+    }
+  }
+}
+
+// Tablet, Ipad
+@media only screen and (min-width: 768px) {
+  .menu_section {
+    padding-top: 240px;
+    padding-bottom: 130px;
+
+    ._ipad {
+      display: block;
+    }
+    ._mobile, ._desktop {
+      display: none;
+    }
+  }
+
+  .tabControl {
+    ._tab {
+      margin: 0 75px;
+    }
+  }
+
+  .tabContent {
+    ._content {
+
+    }
+  }
+
+}
+
+
+// Desktop
+@media only screen and (min-width: 1200px) {
+  .menu_section {
+    ._desktop {
+      display: block;
+    }
+    ._mobile, ._ipad {
+      display: none;
+    }
+  }
+
+  .tabControl {
+
+    ._tab {
+    }
+  }
+
+  .tabContent {
+    ._content {
+
+    }
+  }
+}

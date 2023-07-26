@@ -6,12 +6,14 @@
   position: absolute;
   bottom: 10px;
   left: 50%;
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   font-size: 0;
   line-height: 0;
   color: transparent;
   background-color: transparent;
+  z-index: 1;
+  cursor: pointer;
 
   &.slick-prev {
     margin-left: -60px;
@@ -36,9 +38,10 @@
 .slick-prev, .slick-next {
   &:before {
     content: '';
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
     display: block;
+    margin: auto;
     font-size: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -48,3 +51,32 @@
   }
 }
 
+.topGreenArrow {
+  .slick-arrow {
+    bottom: auto;
+    top: 20px;
+
+    &.slick-prev {
+      left: 15px;
+      margin-left: 0;
+
+      transform: rotate(180deg);
+      transform-origin: center;
+      margin-bottom: -2px;
+
+      &:before {
+        background-image: url("/wp-content/themes/dom/images/arrow-next-green.svg");
+      }
+    }
+
+    &.slick-next {
+      margin-left: 0;
+      left: auto;
+      right: 15px;
+
+      &:before {
+        background-image: url("/wp-content/themes/dom/images/arrow-next-green.svg");
+      }
+    }
+  }
+}

@@ -39,14 +39,29 @@
 
   <header id="masthead" class="site-header w1328">
 
+    <?php
+    $bodyClass = get_body_class();
+    $transparentHeaderList = ['page-menu'];
+    $isTransparentHeader = array_intersect($transparentHeaderList, $bodyClass);
+    if (!empty($isTransparentHeader)) {
+      // Add custom class 'transparent' to body tag in WordPress
+      echo '<script>document.body.classList.add("transparent");</script>';
+    }
+    ?>
+
     <!-- logo -->
     <div class="site-branding">
       <?php
-      if (is_front_page()) {
-        ?>
+      if (is_front_page() || !empty($isTransparentHeader)) { ?>
         <span class="custom-logo-link" rel="home" aria-current="page">
+          <?php if (!empty($isTransparentHeader)) {
+            echo '<a href="' . esc_url(home_url('/')) . '">';
+          } ?>
           <img src="<?= getDefaultImg('logo-white.png') ?>" class="custom-logo"
-               alt="Dom The Wine Bistro" decoding="async">
+               alt="Dom The Wine Bistro" decoding="async"/>
+          <?php if (!empty($isTransparentHeader)) {
+            echo '<a/>';
+          } ?>
         </span>
       <?php } else {
         the_custom_logo();
@@ -71,11 +86,15 @@
       <div class="closeMenu">
         <svg id="CloseMenuButton" fill="none" viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#a)" fill="#fff">
-            <path d="m1.2507 39.167c-0.08155-0.0012-0.16098-0.0262-0.22843-0.0721-0.067442-0.0458-0.11995-0.1105-0.151-0.1859s-0.039291-0.1583-0.023691-0.2383c0.015601-0.0801 0.054354-0.1538 0.11145-0.212l37.5-37.5c0.0785-0.07846 0.1849-0.12254 0.2958-0.12254 0.111 0 0.2174 0.044079 0.2959 0.12254 0.0784 0.078456 0.1225 0.18488 0.1225 0.29584s-0.0441 0.21737-0.1225 0.29583l-37.5 37.5c-0.03977 0.0384-0.08678 0.0685-0.13828 0.0885s-0.10648 0.0296-0.16172 0.0282z"/>
-            <path d="m38.75 39.167c-0.1099-0.0016-0.2147-0.0465-0.2916-0.125l-37.5-37.5c-0.07846-0.07846-0.12254-0.18488-0.12254-0.29583 0-0.11096 0.044078-0.21738 0.12254-0.29584 0.078464-0.07846 0.18487-0.12254 0.29583-0.12254s0.21737 0.044078 0.29583 0.12254l37.5 37.5c0.0606 0.0583 0.1021 0.1335 0.1191 0.2157 0.017 0.0823 0.0087 0.1678-0.0237 0.2453-0.0325 0.0775-0.0876 0.1434-0.1581 0.189-0.0706 0.0456-0.1533 0.0689-0.2373 0.0667z"/>
+            <path
+              d="m1.2507 39.167c-0.08155-0.0012-0.16098-0.0262-0.22843-0.0721-0.067442-0.0458-0.11995-0.1105-0.151-0.1859s-0.039291-0.1583-0.023691-0.2383c0.015601-0.0801 0.054354-0.1538 0.11145-0.212l37.5-37.5c0.0785-0.07846 0.1849-0.12254 0.2958-0.12254 0.111 0 0.2174 0.044079 0.2959 0.12254 0.0784 0.078456 0.1225 0.18488 0.1225 0.29584s-0.0441 0.21737-0.1225 0.29583l-37.5 37.5c-0.03977 0.0384-0.08678 0.0685-0.13828 0.0885s-0.10648 0.0296-0.16172 0.0282z"/>
+            <path
+              d="m38.75 39.167c-0.1099-0.0016-0.2147-0.0465-0.2916-0.125l-37.5-37.5c-0.07846-0.07846-0.12254-0.18488-0.12254-0.29583 0-0.11096 0.044078-0.21738 0.12254-0.29584 0.078464-0.07846 0.18487-0.12254 0.29583-0.12254s0.21737 0.044078 0.29583 0.12254l37.5 37.5c0.0606 0.0583 0.1021 0.1335 0.1191 0.2157 0.017 0.0823 0.0087 0.1678-0.0237 0.2453-0.0325 0.0775-0.0876 0.1434-0.1581 0.189-0.0706 0.0456-0.1533 0.0689-0.2373 0.0667z"/>
           </g>
           <defs>
-            <clipPath id="a"><rect width="40" height="40" fill="#fff"/></clipPath>
+            <clipPath id="a">
+              <rect width="40" height="40" fill="#fff"/>
+            </clipPath>
           </defs>
         </svg>
 
@@ -86,7 +105,7 @@
 
       <!-- Footer -->
 
-      <?php $footer_copyright = get_field( 'copyright', 'option' ); ?>
+      <?php $footer_copyright = get_field('copyright', 'option'); ?>
       <div class="_footer w1328">
         <p><?= $footer_copyright ?></p>
       </div>

@@ -61,13 +61,29 @@ $(document).ready(function () {
 
 
   // Slider
-
-
   $('.introductionSlider').slick({
     infinite: true,
     dots: false,
     arrows: true,
     mobileFirst: true
   });
+
+  $('.menu_slider').slick({
+    infinite: true,
+    dots: false,
+    arrows: true,
+    mobileFirst: true
+  });
+
+  // Menu Page
+  $('.tabControl ._tab').click(function (){
+    let current = $(this);
+    let targetTab = current.attr('data-id');
+    // Toggle Effect
+    $('.tabControl ._tab').removeClass('activated');
+    current.addClass('activated');
+    $('.tabContent ._content').removeClass('activated');
+    $('#' + targetTab).addClass('activated');
+  })
 
 });
