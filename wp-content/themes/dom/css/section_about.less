@@ -1,0 +1,152 @@
+@import "variables";
+
+.about_section {
+  strong {
+    color: @yellowGolden;
+  }
+}
+
+.top_about_section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  .about_right_text {
+    margin-bottom: 30px;
+  }
+
+  .about_left_img {
+    width: 100%;
+  }
+}
+
+.bottom_about_section {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-color: @greenEveningSea;
+  padding-top: 75px;
+  padding-bottom: 100px;
+  color: #fff;
+  margin-top: -35px;
+
+  .about_left_text {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 160px;
+      height: 17px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url("/wp-content/themes/dom/images/yellow-line-mobile.svg");
+    }
+  }
+
+  .aboutGallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    ._img {
+      flex-grow: 0;
+      flex-shrink: 1;
+      flex-basis: calc(~'50% - 10px');
+      width: 0;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  .bottom_about_section {
+    padding-top: 160px;
+    margin-top: -110px;
+
+    .about_left_text {
+      &:before {
+        top: 33px;
+        width: 180px;
+      }
+    }
+
+    .aboutGallery {
+      margin-top: 60px;
+
+      ._img {
+        flex-basis: calc(~'50% - 25px');
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .top_about_inner {
+    display: flex;
+    flex-direction: row-reverse;
+
+    .about_left_img {
+      flex: 55%;
+      width: 0;
+    }
+
+    .about_right_text {
+      flex: 45%;
+      width: 0;
+      padding-left: 6vw;
+    }
+  }
+
+  .bottom_about_section {
+    padding-top: 105px;
+    margin-top: -80px;
+
+    .about_left_text {
+      &:before {
+        top: 62px;
+      }
+    }
+  }
+
+  .bottom_about_inner {
+    display: flex;
+
+    .about_left_text {
+      flex: 55%;
+      width: 0;
+      padding-right: 9vw;
+      padding-top: 30px;
+    }
+
+    .aboutGallery {
+      flex: 45%;
+      width: 0;
+      margin: 0;
+      padding: 0 10px;
+
+      ._img {
+        flex-basis: calc(~'50% - 20px');
+      }
+
+    }
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  .top_about_inner {
+    .about_right_text {
+      padding-left: 90px;
+    }
+  }
+
+  .bottom_about_inner {
+    .about_left_text {
+      padding-right: 120px;
+    }
+  }
+
+}
