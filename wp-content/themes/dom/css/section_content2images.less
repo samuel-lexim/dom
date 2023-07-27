@@ -1,0 +1,94 @@
+@import "variables";
+
+.content_2images_section {
+  margin-top: 30px;
+
+  .top_content {
+    text-align: center;
+    margin-bottom: 30px;
+
+    ._underline {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 27px;
+        left: 0;
+        width: 160px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("/wp-content/themes/dom/images/yellow-line-mobile.svg");
+      }
+    }
+  }
+
+  .image_list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    ._img {
+      margin-bottom: 25px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  .page-contact {
+    .content_2images_section {
+      padding-bottom: 20px;
+    }
+  }
+
+  .content_2images_section {
+
+    .top_content {
+      max-width: 785px;
+      margin: 0 auto 70px;
+
+      ._underline {
+        &:before {
+          width: 180px;
+          top: 31px;
+        }
+      }
+    }
+
+    .image_list {
+      ._img {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .content_2images_section {
+    .top_content {
+      margin-bottom: 50px;
+    }
+
+    .image_list {
+      flex-direction: row;
+      justify-content: space-between;
+
+      ._img {
+        width: 0;
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: calc(~'50% - 10px');
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+      }
+    }
+  }
+}
+
