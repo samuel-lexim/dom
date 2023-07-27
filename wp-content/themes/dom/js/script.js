@@ -76,6 +76,14 @@ $(document).ready(function () {
     adaptiveHeight: true
   });
 
+  $('.defaultSlick').slick({
+    infinite: true,
+    dots: false,
+    arrows: true,
+    mobileFirst: true,
+    adaptiveHeight: true
+  });
+
   // Menu Page
   $('.tabControl ._tab').click(function (){
     let current = $(this);

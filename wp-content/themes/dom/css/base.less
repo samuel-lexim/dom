@@ -260,3 +260,34 @@ h1, .h1 {
     padding-right: 0;
   }
 }
+
+// show only
+.only_mobile {
+  display: block;
+}
+
+.only_ipad, .only_desktop, .only_ipad_desktop {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .only_mobile {
+    display: none;
+  }
+
+  .only_ipad_desktop {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .only_ipad {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .only_desktop {
+    display: block;
+  }
+}
