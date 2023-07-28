@@ -76,7 +76,7 @@ $(document).ready(function () {
     adaptiveHeight: true
   };
 
-  if ($('body').hasClass('page-promotions')) {
+  if ($('body').is('.page-promotions, .single-post') ) {
     settings = {
       infinite: true,
       dots: false,

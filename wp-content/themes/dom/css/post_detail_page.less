@@ -72,6 +72,19 @@
   }
 }
 
+// Post detail page
+.type-post {
+  .entry-header {
+    margin-bottom: 30px;
+  }
+
+  .entry-title {
+    ._underline {
+
+    }
+  }
+}
+
 @media only screen and (min-width: 480px) {
   .bottom_slider {
   }
@@ -91,7 +104,7 @@
     }
   }
 
-  .bottom_slider{
+  .bottom_slider {
     .bottom_slider_inner {
       max-width: 900px;
       margin: 0 auto;
@@ -102,11 +115,29 @@
       padding: 0 15px;
     }
   }
+
+  // Post detail page
+  .type-post {
+    ._top_content {
+      max-width: 930px;
+      margin-bottom: 60px;
+    }
+
+    .entry-header {
+      margin-bottom: 60px;
+    }
+
+    .entry-title {
+      ._underline:before {
+        top: 46px;
+      }
+    }
+  }
 }
 
 
 @media only screen and (min-width: 1200px) {
-  .bottom_slider{
+  .bottom_slider {
     .bottom_slider_inner {
       max-width: 1350px;
     }

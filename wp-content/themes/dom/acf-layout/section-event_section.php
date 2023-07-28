@@ -48,7 +48,6 @@ if (isset($args) && $args) {
       <div class="_greenBg" style="background-image: url(<?= $bg ?>)"></div>
     </div>
 
-
   </div>
 
 <?php } ?>
