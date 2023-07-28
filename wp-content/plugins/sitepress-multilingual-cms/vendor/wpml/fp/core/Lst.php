@@ -14,7 +14,7 @@ use WPML\Collect\Support\Arr;
  * @method static callable|array toObj( array ...$array ) - Curried :: array → object
  * @method static callable|array pluck( ...$prop, ...$array ) - Curried :: string → array → array
  * @method static callable|array partition( ...$predicate, ...$target ) - Curried :: ( a → bool ) → [a] → [[a], [a]]
- * @method static callable|array sort( ...$fn, ...$target ) - Curried :: ( ( a, a ) → int ) → [a] → [a]
+ * @method static callable|array sort( ...$fn, ...$target ) - Curried :: ( ( a, a ) → int|bool ) → [a] → [a]
  * @method static callable|array unfold( ...$fn, ...$seed ) - Curried :: ( a → [b] ) → * → [b]
  * @method static callable|array zip( ...$a, ...$b ) - Curried :: [a] → [b] → [[a, b]]
  * @method static callable|array zipObj( ...$a, ...$b ) - Curried :: [a] → [b] → [a => b]
@@ -37,7 +37,8 @@ use WPML\Collect\Support\Arr;
  * $this->assertFalse( $includes10and20( [ 5, 15, 20 ] ) );
  * ```
  * @method static callable|bool nth( ...$n, ...$array ) - Curried :: int → [a] → a | null
- * @method static callable|bool last( ...$array ) - Curried :: [a] → a | null
+ * @method static callable|bool first( ...$array ) - Curried :: [a, b] → a | null
+ * @method static callable|bool last( ...$array ) - Curried :: [a, b] → b | null
  * @method static callable|int length( ...$array ) - Curried :: [a] → int
  * @method static callable|array take( ...$n, ...$array ) - Curried :: int → [a] → [a]
  * @method static callable|array takeLast( ...$n, ...$array ) - Curried :: int → [a] → [a]
@@ -111,7 +112,10 @@ class Lst {
 			if ( $data instanceof Collection ) {
 				return wpml_collect( self::sort( $compare, $data->toArray() ) );
 			}
-			usort( $data, $compare );
+			$intCompare = function ( $a, $b ) use ( $compare ) {
+				return (int) $compare( $a, $b );
+			};
+			usort( $data, $intCompare );
 
 			return $data;
 		} ) );
@@ -212,6 +216,8 @@ class Lst {
 			return $n >= 0 && $n < $count ? $array[ $n ] : null;
 
 		} ) );
+
+		self::macro( 'first', self::nth( 0 ) );
 
 		self::macro( 'last', self::nth( - 1 ) );
 
@@ -362,6 +368,19 @@ class Lst {
 		$repeat = flip( partial( 'array_fill', 0 ) );
 
 		return call_user_func_array( curryN( 2, $repeat ), func_get_args() );
+	}
+
+	/**
+	 * @param array|Collection $param
+	 *
+	 * @return callable|int
+	 */
+	public static function sum( $param = null ) {
+		$sum = function ( $param ) {
+			return is_object( $param ) ? $param->sum() : array_sum( $param );
+		};
+
+		return call_user_func_array( curryN( 1, $sum ), func_get_args() );
 	}
 }
 

@@ -13,15 +13,18 @@ use WPML\FP\Str;
 use WPML\FP\Nothing;
 use WPML\FP\Just;
 use WPML\LIB\WP\User;
-use WPML\Element\API\Entity\LanguageMapping;
-use function WPML\Container\make;
 use function WPML\FP\curryN;
-use function WPML\FP\invoke;
 use function WPML\FP\pipe;
-use WPML\LIB\WP\Option as WPOption;
 use WPML\API\Settings;
+use WPML\FP\Invoker\BeforeAfter;
 
 /**
+ * @method static callable|string getCodeByName( ...$name ) - Curried :: string->string
+ *
+ * It returns language code according to the given name in the current display language.
+ *
+ * eg. 'Französisch' in German will return 'fr'
+ *
  * @method static array getActive()
  *
  * It returns an array of the active languages.
@@ -101,11 +104,11 @@ use WPML\API\Settings;
  * ]
  *```
  *
- * @method static array getDefaultCode()
+ * @method static string getDefaultCode()
  *
  * It returns a default language code.
  *
- * @method static array getCurrentCode()
+ * @method static string getCurrentCode()
  *
  * It returns a current language code.
  *
@@ -163,6 +166,19 @@ class Languages {
 	 * @return void
 	 */
 	public static function init() {
+
+		self::macro( 'getCodeByName', curryN( 1, function ( $name ) {
+			global $wpdb;
+
+			$lang_code_query = "
+				SELECT language_code
+				FROM {$wpdb->prefix}icl_languages_translations
+				WHERE name = %s AND display_language_code = %s
+			";
+
+			return $wpdb->get_var( $wpdb->prepare( $lang_code_query, $name, self::getCurrentCode() ) );
+		} ) );
+
 		self::macro( 'getActive', function () {
 			global $sitepress;
 
@@ -195,10 +211,17 @@ class Languages {
 
 		self::macro(
 			'getSecondaries',
-			pipe( [ self::class, 'getActive' ], Fns::reject( function( $lang ) { return Relation::propEq( 'code', self::getDefaultCode(), $lang ); } ) )
+			function() {
+				$activeLanguages = self::getActive();
+
+				return array_filter(
+					$activeLanguages,
+					Logic::complement( Relation::propEq( 'code', self::getDefaultCode() ) )
+				);
+			}
 		);
 
-		self::macro( 'getSecondaryCodes', pipe( [ self::class, 'getSecondaries' ], Lst::pluck( 'code' ) ) );
+		self::macro( 'getSecondaryCodes', pipe( [ self::class, 'getSecondaries' ], Lst::pluck( 'code' ), Obj::values() ) );
 
 		self::macro( 'getAll', function ( $userLang = false ) {
 			global $sitepress;
@@ -263,7 +286,7 @@ class Languages {
 			], $langDetails );
 		} ) );
 
-		self::macro( 'downloadWPLocale', curryN( 1, function ( string $locale ) {
+		self::macro( 'downloadWPLocale', curryN( 1, function ( $locale ) {
 			if ( ! function_exists( 'wp_download_language_pack' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/translation-install.php';
 			}
@@ -429,6 +452,32 @@ class Languages {
 		} else {
 			return $language;
 		}
+	}
+
+	/**
+	 * It lets you run a function in a specific language.
+	 *
+	 * ```php
+	 *  $result = Languages::whileInLanguage( 'de' )
+	 *		->invoke( 'my_function' )
+	 *		->runWith( 1, 2, 'some' );
+	 * ```
+	 *
+	 * @param string $lang
+	 *
+	 * @return BeforeAfter
+	 */
+	public static function whileInLanguage( $lang ) {
+		global $sitepress;
+		$old_lang = null;
+		$before = function() use ( &$old_lang, $sitepress, $lang ) {
+			$old_lang = $sitepress->get_current_language();
+			$sitepress->switch_lang( $lang );
+		};
+		$after = function() use ( $sitepress, &$old_lang ) {
+			$sitepress->switch_lang( $old_lang );
+		};
+		return BeforeAfter::of( $before, $after );
 	}
 }
 

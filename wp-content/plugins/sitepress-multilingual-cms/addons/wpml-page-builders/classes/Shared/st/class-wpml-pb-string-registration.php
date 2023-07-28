@@ -23,12 +23,12 @@ class WPML_PB_String_Registration {
 	/**
 	 * WPML_PB_String_Registration constructor.
 	 *
-	 * @param IWPML_PB_Strategy $strategy
-	 * @param WPML_ST_String_Factory $string_factory
-	 * @param WPML_ST_Package_Factory $package_factory
+	 * @param IWPML_PB_Strategy           $strategy
+	 * @param WPML_ST_String_Factory      $string_factory
+	 * @param WPML_ST_Package_Factory     $package_factory
 	 * @param WPML_Translate_Link_Targets $translate_link_targets
-	 * @param callable $set_link_translations
-	 * @param bool $migration_mode
+	 * @param callable                    $set_link_translations
+	 * @param bool                        $migration_mode
 	 */
 	public function __construct(
 		IWPML_PB_Strategy $strategy,
@@ -47,8 +47,9 @@ class WPML_PB_String_Registration {
 	}
 
 	/**
-	 * @param int $post_id
+	 * @param int    $post_id
 	 * @param string $content
+	 * @param string $name
 	 *
 	 * @return null|int
 	 */
@@ -69,13 +70,13 @@ class WPML_PB_String_Registration {
 	/**
 	 * Register string.
 	 *
-	 * @param int    $post_id  Post Id.
-	 * @param string $content  String content.
-	 * @param string $type     String editor type.
-	 * @param string $title    String title.
-	 * @param string $name     String name.
-	 * @param int    $location String location.
-	 * @param string $wrap_tag String wrap tag.
+	 * @param int          $post_id  Post Id.
+	 * @param string|mixed $content  String content.
+	 * @param string       $type     String editor type.
+	 * @param string       $title    String title.
+	 * @param string       $name     String name.
+	 * @param int          $location String location.
+	 * @param string       $wrap_tag String wrap tag.
 	 *
 	 * @return null|integer $string_id
 	 */
@@ -91,7 +92,7 @@ class WPML_PB_String_Registration {
 
 		$string_id = 0;
 
-		if ( trim( $content ) ) {
+		if ( is_string( $content ) && trim( $content ) ) {
 
 			$string_name = $name ? $name : md5( $content );
 

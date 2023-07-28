@@ -2,7 +2,9 @@
 
 namespace WPML\Compatibility\FusionBuilder\Frontend;
 
+use WPML\API\Sanitize;
 use WPML\Compatibility\FusionBuilder\BaseHooks;
+use WPML\FP\Obj;
 
 class Hooks extends BaseHooks implements \IWPML_Frontend_Action, \IWPML_DIC_Action {
 
@@ -27,6 +29,7 @@ class Hooks extends BaseHooks implements \IWPML_Frontend_Action, \IWPML_DIC_Acti
 		}
 
 		add_filter( 'nav_menu_link_attributes', [ $this, 'addMenuLinkCssClass' ], 10, 2 );
+		add_filter( 'fusion_get_all_meta', [ $this, 'translateOffCanvasConditionId' ] );
 	}
 
 	public function frontendScripts() {
@@ -65,8 +68,9 @@ class Hooks extends BaseHooks implements \IWPML_Frontend_Action, \IWPML_DIC_Acti
 	}
 
 	private function isFusionBuilderRequest() {
+		/* phpcs:ignore WordPress.Security.NonceVerification.Recommended */
+		$builder_id = Sanitize::stringProp( 'builder_id', $_GET );
 		$builder    = filter_input( INPUT_GET, 'builder', FILTER_VALIDATE_BOOLEAN );
-		$builder_id = filter_input( INPUT_GET, 'builder_id', FILTER_SANITIZE_STRING );
 
 		return $builder && $builder_id;
 	}
@@ -86,10 +90,34 @@ class Hooks extends BaseHooks implements \IWPML_Frontend_Action, \IWPML_DIC_Acti
 	 */
 	public function addMenuLinkCssClass( $atts, $item ) {
 		if ( 'wpml_ls_menu_item' === $item->type ) {
-			$atts['class'] .= ' wpml-ls-link';
+			$class         = Obj::prop( 'class', $atts );
+			$atts['class'] = $class ? "$class wpml-ls-link" : 'wpml-ls-link';
 		}
 
 		return $atts;
+	}
+
+	/**
+	 * @param array $data
+	 * @return array
+	 */
+	public function translateOffCanvasConditionId( $data ) {
+		if ( is_array( $data ) && Obj::prop( 'layout_conditions', $data ) ) {
+			$conditions = json_decode( Obj::prop( 'layout_conditions', $data ), true );
+			$result     = [];
+			foreach ( $conditions as $key => $condition ) {
+				if ( 'specific_' === substr( $key, 0, 9 ) ) {
+					list( $pattern, $id ) = explode( '|', $key, 2 );
+					$post_type            = substr( $pattern, 9 );
+					$id                   = $this->sitepress->get_object_id( $id, $post_type, true );
+					$key                  = $pattern . '|' . $id;
+				}
+				$result[ $key ] = $condition;
+			}
+			$data = Obj::assoc( 'layout_conditions', wp_json_encode( $result ), $data );
+		}
+
+		return $data;
 	}
 
 }
