@@ -30,7 +30,7 @@ if (isset($args) && $args) {
         <div class="_content activated" id="FoodTab">
           <?php
           if ($args['food_menu'] && $args['food_menu']['menu_slider']) { ?>
-            <div class="menu_slider topGreenArrow">
+            <div class="defaultSlick topGreenArrow">
               <?php foreach ($args['food_menu']['menu_slider'] as $menu) { ?>
                 <div class="menu_slider_item">
                   <?php if ($menu['mobile']) { ?>
@@ -53,7 +53,7 @@ if (isset($args) && $args) {
 
           <?php
           if ($args['drink_menu'] && $args['drink_menu']['menu_slider']) { ?>
-            <div class="menu_slider topGreenArrow">
+            <div class="defaultSlick topGreenArrow">
               <?php foreach ($args['drink_menu']['menu_slider'] as $menu) { ?>
                 <div class="menu_slider_item">
                   <?php if ($menu['mobile']) { ?>

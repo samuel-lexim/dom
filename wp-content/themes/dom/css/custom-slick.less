@@ -110,3 +110,48 @@
     }
   }
 }
+
+// top_arrows
+.top_arrows_slick {
+  padding-bottom: 0;
+  padding-top: 70px;
+
+  .slick-arrow {
+    &.slick-prev {
+      left: 0;
+      top: 2px;
+      margin-left: 0;
+      transform: rotate(180deg);
+      transform-origin: center;
+
+      &:before {
+        background-image: url("/wp-content/themes/dom/images/arrow-next-green.svg");
+      }
+    }
+
+    &.slick-next {
+      left: auto;
+      right: 0;
+      top: 0;
+      margin-left: 0;
+
+      &:before {
+        background-image: url("/wp-content/themes/dom/images/arrow-next-green.svg");
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .top_arrows_slick {
+    .slick-arrow {
+      &.slick-prev {
+        left: 11px;
+      }
+
+      &.slick-next {
+        right: 11px;
+      }
+    }
+  }
+}

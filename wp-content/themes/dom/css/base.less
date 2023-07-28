@@ -124,7 +124,6 @@ h1, .h1 {
 .s16 {
   font-size: 16px;
   line-height: 1.375;
-  letter-spacing: 5em;
 }
 
 .s18 {
@@ -223,6 +222,10 @@ h1, .h1 {
     }
   }
 
+  svg {
+    margin-left: 10px;
+  }
+
   &._yellow {
     background: @yellowGolden;
     color: @greenDeepTeal;
@@ -232,9 +235,17 @@ h1, .h1 {
     color: @greenEveningSea;
   }
 
-  svg {
-    margin-left: 10px;
+  &._view {
+    background: @yellowGolden;
+    color: @greenEveningSea;
+    font-weight: 700;
+    font-size: 14px;
+
+    a {
+      line-height: 40px;
+    }
   }
+
 }
 
 // Layout

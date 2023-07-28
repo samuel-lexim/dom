@@ -68,21 +68,41 @@ $(document).ready(function () {
     mobileFirst: true
   });
 
-  $('.menu_slider').slick({
+  let settings = {
     infinite: true,
     dots: false,
     arrows: true,
     mobileFirst: true,
     adaptiveHeight: true
-  });
+  };
 
-  $('.defaultSlick').slick({
-    infinite: true,
-    dots: false,
-    arrows: true,
-    mobileFirst: true,
-    adaptiveHeight: true
-  });
+  if ($('body').hasClass('page-promotions')) {
+    settings = {
+      infinite: true,
+      dots: false,
+      arrows: true,
+      mobileFirst: true,
+      adaptiveHeight: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          }
+        },
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          }
+        }
+      ]
+    }
+  }
+
+  $('.defaultSlick').slick(settings);
 
   // Menu Page
   $('.tabControl ._tab').click(function (){
