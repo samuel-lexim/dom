@@ -61,6 +61,7 @@ $(document).ready(function () {
 
 
   // Slider
+  let body = $('body');
   $('.introductionSlider').slick({
     infinite: true,
     dots: false,
@@ -76,7 +77,25 @@ $(document).ready(function () {
     adaptiveHeight: true
   };
 
-  if ($('body').is('.page-promotions, .single-post') ) {
+  if (body.is('.page-gallery')) {
+    settings = {
+      infinite: true,
+      dots: false,
+      arrows: true,
+      mobileFirst: true,
+      adaptiveHeight: true,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            fade: true
+          }
+        }
+      ]
+    };
+  }
+
+  if (body.is('.page-promotions, .single-post')) {
     settings = {
       infinite: true,
       dots: false,
@@ -105,7 +124,7 @@ $(document).ready(function () {
   $('.defaultSlick').slick(settings);
 
   // Menu Page
-  $('.tabControl ._tab').click(function (){
+  $('.tabControl ._tab').click(function () {
     let current = $(this);
     let targetTab = current.attr('data-id');
     // Toggle Effect
