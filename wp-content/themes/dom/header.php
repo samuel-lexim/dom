@@ -54,14 +54,15 @@
       <?php
       if (is_front_page() || !empty($isTransparentHeader)) { ?>
         <span class="custom-logo-link" rel="home" aria-current="page">
-          <?php if (!empty($isTransparentHeader)) {
-            echo '<a href="' . esc_url(home_url('/')) . '">';
-          } ?>
+          <?php if (!empty($isTransparentHeader)) { ?>
+            <a href="<?= esc_url(home_url('/')) ?>">
+              <img src="<?= getDefaultImg('logo-white.png') ?>" class="custom-logo"
+                   alt="Dom The Wine Bistro" decoding="async"/>
+            </a>
+          <?php } else { ?>
           <img src="<?= getDefaultImg('logo-white.png') ?>" class="custom-logo"
                alt="Dom The Wine Bistro" decoding="async"/>
-          <?php if (!empty($isTransparentHeader)) {
-            echo '<a/>';
-          } ?>
+          <?php } ?>
         </span>
       <?php } else {
         the_custom_logo();
