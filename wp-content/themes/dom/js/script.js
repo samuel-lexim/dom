@@ -132,6 +132,9 @@ $(document).ready(function () {
     current.addClass('activated');
     $('.tabContent ._content').removeClass('activated');
     $('#' + targetTab).addClass('activated');
+
+    // Update the size of slick slider
+    $('.defaultSlick').slick('setPosition');
   })
 
 });
