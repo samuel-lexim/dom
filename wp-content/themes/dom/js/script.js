@@ -66,7 +66,9 @@ $(document).ready(function () {
     infinite: true,
     dots: false,
     arrows: true,
-    mobileFirst: true
+    mobileFirst: true,
+    autoplay: true,
+    autoplaySpeed: 2000
   });
 
   let settings = {

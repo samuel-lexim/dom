@@ -114,7 +114,7 @@
 
     <div class="rightHeader">
       <?php
-      echo render_button('Booking', '#', '_yellow booking s14');
+      echo render_button('Booking', '/booking', '_yellow booking s14');
       echo render_button('Menu', getPreLink() . 'menu', 'menu s14');
 
       // Check if WPML is active

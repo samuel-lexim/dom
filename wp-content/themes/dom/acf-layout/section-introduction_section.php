@@ -25,7 +25,7 @@ if (isset($args) && $args) {
           </h1>
 
           <?php if ($args['show_booking_button']) {
-            echo render_button('Booking', '#', 's16 _yellow _lightGreenTxt h40', true);
+            echo render_button('Booking', '/booking', 's16 _yellow _lightGreenTxt h40', true);
           } ?>
         </div>
 
