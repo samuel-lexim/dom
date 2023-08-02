@@ -34,16 +34,18 @@
     }
   }
 
-}
-
-// Form
-.ninja-forms-form-wrap .nf-before-form-content {
-  display: none;
+  .nf-form-cont {
+    max-width: 550px;
+    margin: 30px auto 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   .booking_section {
     .booking_section_inner {
+      .nf-form-cont {
+        margin-top: 40px;
+      }
     }
 
     ._section_title {
@@ -52,6 +54,29 @@
       ._underline {
         &:before {
           top: 54px;
+        }
+      }
+    }
+
+    .nf-form-content {
+      nf-fields-wrap {
+        > nf-field {
+          &:nth-child(2), &:nth-child(3) {
+            display: inline-flex;
+            width: 50%;
+
+            .nf-field-container {
+              width: 100%;
+            }
+          }
+
+          &:nth-child(2) {
+            padding-right: 10px;
+          }
+
+          &:nth-child(3) {
+            padding-left: 10px;
+          }
         }
       }
     }
@@ -67,3 +92,179 @@
 
 
 }
+
+
+// START - FORM
+.ninja-forms-form-wrap {
+  .nf-form-content {
+    padding: 0;
+  }
+
+  .nf-form-content label,
+  .nf-error-msg {
+    font-size: 14px;
+  }
+
+  .nf-before-form-content {
+    display: none;
+  }
+
+  .nf-form-content .label-above .nf-field-label,
+  .nf-form-content .label-below .nf-field-label,
+  .nf-form-content .label-hidden .nf-field-label {
+    margin-bottom: 5px !important;
+  }
+
+  #ninja_forms_required_items, .nf-field-container {
+    margin-bottom: 20px;
+  }
+
+  select {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff !important;
+    background-image: url("/wp-content/themes/dom/images/caret-down.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 10px center !important;
+  }
+
+  .nf-form-content .list-select-wrap .nf-field-element > div,
+  .nf-form-content input:not([type=button]), .nf-form-content textarea {
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: #fff;
+    border-color: @greenEveningSea !important;
+    color: @greenDeepTeal !important;
+    outline: 0;
+
+    &:focus {
+      border-color: @yellowGoldenBold !important;
+      opacity: 0.7;
+    }
+  }
+
+  .nf-form-content button,
+  .nf-form-content input[type=button],
+  .nf-form-content input[type=submit] {
+    background: @yellowGolden !important;
+    color: @greenEveningSea !important;
+    border-radius: 20px;
+    font-weight: 800;
+    padding: 0 30px;
+    height: 40px;
+    outline: 0;
+    cursor: pointer;
+  }
+
+  .nf-field-container {
+    &.date-container {
+      .field-wrap.date-wrap:not(.nf-fail):not(.nf-error):not(.nf-pass) {
+        input.datepicker {
+          background-image: url("/wp-content/themes/dom/images/calendar.svg") !important;
+          background-repeat: no-repeat !important;
+          background-position: right 10px center !important;
+        }
+      }
+    }
+
+  }
+
+  .field-wrap.date-wrap {
+    .nf-field-element {
+      .hour, .minute {
+        padding: 0 10px;
+        border: 1px solid @greenEveningSea;
+        border-radius: 10px;
+        height: 50px;
+        background: #fff;
+        cursor: pointer;
+        outline: 0;
+      }
+    }
+  }
+
+  .nf-pass {
+    .ninja-forms-field {
+      border-color: @greenEveningSea !important;
+    }
+
+    &.field-wrap .nf-field-element:after {
+      color: @greenEveningSea;
+      width: 50px;
+      right: 0;
+      text-align: center;
+    }
+  }
+
+  .nf-error {
+    .list-select-wrap .nf-field-element > div,
+    input:not([type=button]), textarea,
+    .ninja-forms-field {
+      border-color: @redBerry !important;
+    }
+
+
+    &.field-wrap .nf-field-element:after {
+      content: "\f06a";
+      color: @redBerry;
+      background: transparent;
+      top: 0;
+      right: 0;
+      height: 50px;
+      line-height: 50px;
+      font-size: 30px;
+    }
+  }
+
+  .nf-error .nf-error-msg,
+  .nf-error-msg, .ninja-forms-req-symbol {
+    color: @redBerry;
+    font-weight: 700;
+  }
+}
+
+#nf-form-1-cont { // booking form ID 1
+  #nf-field-7-wrap {
+    .nf-field-element {
+      display: flex;
+      justify-content: space-between;
+
+      .pikaday__container {
+        display: none;
+      }
+
+      ._extra_container {
+        flex-shrink: 0;
+        flex-grow: 0;
+        flex-basis: calc(~'50% - 10px');
+        width: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .ninja-forms-form-wrap {
+
+    .nf-form-content .list-select-wrap .nf-field-element > div,
+    .nf-form-content input:not([type=button]), .nf-form-content textarea {
+      &:focus {
+        border-color: @greenEveningSea !important;
+        color: @greenDeepTeal !important;
+      }
+    }
+
+    .nf-form-content button,
+    .nf-form-content input[type=button],
+    .nf-form-content input[type=submit] {
+      &:hover, &:focus, :active, :visited {
+        background: @greenEveningSea !important;
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+// END - FORM
