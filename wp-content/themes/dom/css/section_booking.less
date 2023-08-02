@@ -148,7 +148,7 @@
   .nf-form-content button,
   .nf-form-content input[type=button],
   .nf-form-content input[type=submit] {
-    background: @yellowGolden !important;
+    background-color: @yellowGolden !important;
     color: @greenEveningSea !important;
     border-radius: 20px;
     font-weight: 800;
@@ -157,6 +157,21 @@
     outline: 0;
     cursor: pointer;
   }
+
+  .nf-form-content input[type=submit] {
+    padding-right: 72px;
+    position: relative;
+    background-image: url("/wp-content/themes/dom/images/arrow-right.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 30px center !important;
+    transition: none !important;
+
+    &:hover, &:focus, :active, :visited {
+      background-color: @yellowGolden !important;
+      color: @greenEveningSea !important;
+    }
+  }
+
 
   .nf-field-container {
     &.date-container {
@@ -257,8 +272,7 @@
     }
 
     .nf-form-content button,
-    .nf-form-content input[type=button],
-    .nf-form-content input[type=submit] {
+    .nf-form-content input[type=button] {
       &:hover, &:focus, :active, :visited {
         background: @greenEveningSea !important;
         color: #fff !important;
