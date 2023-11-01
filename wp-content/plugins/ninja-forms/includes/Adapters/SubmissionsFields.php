@@ -5,7 +5,7 @@ class NF_Adapters_SubmissionsFields implements ArrayAccess, Iterator
     protected $fields;
     protected $fields_by_key = [];
 
-    public function __construct($fields = [], $form_id)
+    public function __construct($fields, $form_id)
     {
         foreach ($fields as $field) {
             if (is_array($field)) {
@@ -40,7 +40,7 @@ class NF_Adapters_SubmissionsFields implements ArrayAccess, Iterator
     | ArrayAccess
     |--------------------------------------------------------------------------
     */
-
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -50,6 +50,7 @@ class NF_Adapters_SubmissionsFields implements ArrayAccess, Iterator
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         if (isset($this->fields[$offset])) {
@@ -61,11 +62,13 @@ class NF_Adapters_SubmissionsFields implements ArrayAccess, Iterator
         return false;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->fields[ $offset ]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if (isset($this->fields[$offset])) {
@@ -88,26 +91,31 @@ class NF_Adapters_SubmissionsFields implements ArrayAccess, Iterator
     |--------------------------------------------------------------------------
     */
 
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->fields);
     }
 
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->fields);
     }
 
+    #[\ReturnTypeWillChange]
     public function next()
     {
         next($this->fields);
     }
 
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         reset($this->fields);
     }
 
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return current($this->fields);

@@ -7,12 +7,12 @@
 	</div>
 
 	<# if ( data.maybeRenderTime() ) { #>
-		<div class="_extra_container">
+		<div style="float:left;">
 			<select class="hour extra">
 				{{{ data.renderHourOptions() }}}
 			</select>
 		</div>
-		<div class="_extra_container">
+		<div style="float:left;">
 			<select class="minute extra">
 				{{{ data.renderMinuteOptions() }}}
 			</select>
