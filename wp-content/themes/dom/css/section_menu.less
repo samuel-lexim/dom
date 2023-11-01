@@ -80,6 +80,7 @@
     ._ipad {
       display: block;
     }
+
     ._mobile, ._desktop {
       display: none;
     }
@@ -99,20 +100,19 @@
     ._desktop {
       display: block;
     }
+
     ._mobile, ._ipad {
       display: none;
     }
   }
 
-  .tabControl {
-
-    ._tab {
-    }
-  }
-
-  .tabContent {
-    ._content {
-
+  body.page-menu.transparent {
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      background-color: @greenEveningSea;
     }
   }
 }

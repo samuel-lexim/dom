@@ -125,8 +125,30 @@
   .wpml-ls {
     margin-left: 10px;
   }
-}
 
+  .header_phone_number {
+    display: none;
+
+    > svg {
+      margin-right: 8px;
+    }
+
+    > span {
+      line-height: 1;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+  }
+}
+@media only screen and (min-width: 540px) {
+  // Right header
+  .rightHeader {
+    .header_phone_number {
+      display: flex;
+    }
+  }
+}
 
 
 // Mobile
@@ -137,7 +159,6 @@
 
   .rightHeader {
     .default_btn.booking {
-      margin-left: 0;
     }
   }
 
@@ -297,7 +318,7 @@
       > li {
         line-height: 1.2;
         padding: 25px 0;
-        margin: 0 25px;
+        margin: 0 9px;
         white-space: nowrap;
         transition: text-shadow 0.2s ease;
 
@@ -324,9 +345,15 @@
   }
 }
 
+@media only screen and (min-width: 1330px) {
+  .main-navigation ul > li {
+    margin: 0 15px;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   .main-navigation ul > li {
-    margin: 0 30px;
+    margin: 0 20px;
   }
 }
 
@@ -349,6 +376,18 @@ body.page-home {
 
     .nav-icon span {
       background-color: #fff;
+    }
+  }
+
+  .rightHeader {
+    .header_phone_number {
+      > svg path {
+        fill: @yellowGolden;
+      }
+
+      > span {
+        color: @yellowGolden;
+      }
     }
   }
 }
