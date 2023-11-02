@@ -97,6 +97,8 @@
 // Desktop
 @media only screen and (min-width: 1200px) {
   .menu_section {
+    padding-top: 190px;
+
     ._desktop {
       display: block;
     }
@@ -104,15 +106,19 @@
     ._mobile, ._ipad {
       display: none;
     }
-  }
 
-  body.page-menu.transparent {
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 999;
-      background-color: @greenEveningSea;
+    .tabControl {
+      padding-bottom: 50px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Sticky menu for PAGE MENU
+@media only screen and (min-width: 1200px) {
+  body.page-menu {
+    .tabContent {
+      overflow-y: auto;
     }
   }
 }
